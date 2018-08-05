@@ -1,0 +1,25 @@
+{
+  "name": "instagram-emoji",
+  "version": "1.0.0",
+  "description": "A visualisation of popular instagram emojis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"node server.js\" \"node index.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roduyemi/instagram-emoji.git"
+  },
+  "author": "Remi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roduyemi/instagram-emoji/issues"
+  },
+  "homepage": "https://github.com/roduyemi/instagram-emoji#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "concurrently": "^3.6.1",
+    "express": "^4.16.3"
+  }
+}
