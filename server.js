@@ -2,18 +2,24 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 3000;
-const dataviz = require('./dataviz');
+const cartogram = require('./dataviz');
 const index = require('./index.js');
+
+app.use(express.static(__dirname));
 
 app.get('/', (request, response) => {
   // index.getEmojiCount()
   // .then((count) => {
   //   console.log('count ', count);
   //   response.send(count);
-  //   response.send(cartogram);
-    response.sendFile(path.join(__dirname, './index.html'));
+    response.send(cartogram);
+    // response.sendFile(path.join(__dirname, './index.html'));
   // });
 });
+
+// app.get('/', (request, response) => {
+//   response.send(dataviz);
+// });
 
 app.get('/cartogram', (request, response) => {
 

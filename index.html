@@ -6,28 +6,47 @@
       <title>Instagram Emoji Counts</title>
   </head>
   <body>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <svg>
+      <!-- <circle class="node" width="100px" height="200px" r="20"/> -->
+    </svg>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://rawgit.com/Kcnarf/d3-beeswarm/master/build/d3-beeswarm.js"></script>
     <script src="https://unpkg.com/d3-scale-cluster@1.1.7/dist/d3-scale-cluster.min.js"></script>
     <script src="https://d3js.org/d3-selection.v1.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="dataviz.js"></script>
+    <script src="https://d3js.org/d3-array.v1.min.js"></script>
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-format.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+    <script src="https://d3js.org/d3-scale.v2.min.js"></script>
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+    <script src="https://d3js.org/d3-quadtree.v1.min.js"></script>
+    <script src="https://d3js.org/d3-timer.v1.min.js"></script>
+    <script src="https://d3js.org/d3-force.v1.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+    <script src="https://d3js.org/d3-ease.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-selection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-timer.v1.min.js"></script>
+    <script src="https://d3js.org/d3-transition.v1.min.js"></script>
+    <link rel="stylesheet" href="style.css">
     <script>
       // console.log('emojiCount ', emojiCount);
       // cartogram(count, d3);
 
       $.ajax({
         url: '/cartogram',
-        // data: $("#chooseDateFormBreaking").serialize(),
         method: 'GET',
-        success: function(data) {
-          console.log('hello')
-          console.log(data);
-          // dataviz.cartogram(data, d3);
-          // if(data.length > 0 && data[0].length > 0 && data[1].length > 0) {
-          //     d3version3.select('#svg-breaking').remove();
-          //     breakingStoriesChart(data[0], data[1], d3version3)
-          // } else {
-          //     alert('No Breaking Stories for Selected Date Range')
-          // }
+        success: (data) => {
+          if (data) {
+            cartogram(data, d3);
+          }
         }
       });
     </script>

@@ -15,6 +15,7 @@ const dataviz = require('./dataviz');
     const data = axios.get(url)
     .then(response =>  {
       const data = response.data.body;
+      // console.log(response.data.body);
       Object.keys(data).forEach(key => {
         // console.log('key : ' + key + ', value: ' + JSON.stringify(data[key]));
       });
