@@ -19,8 +19,11 @@ var colors = [
 //     // d3.csv("https://s3-eu-west-1.amazonaws.com/newslabs-geofacts/county_demo.csv", cartogram)
     
     const cartogram = (data, d3) => {
-      let dataKeys = Object.keys(data);
-      let dataCount = data;
+      const keys = Object.keys(data);
+      let dataArr = [];
+      keys.forEach(k => {
+        dataArr.push(data[k])
+      });
 
       console.log('data before', data);
       
@@ -37,7 +40,7 @@ var colors = [
         values.push(v['media_count'])
       });
 
-      console.log('new data', values);
+      console.log('new data', dataArr);
     
       // var thisKeyValues = data.forEach((d, i) => d[i]);
       // console.log('keyValues', thisKeyValues);
@@ -51,7 +54,7 @@ var colors = [
       .force("collision", d3.forceCollide(d => scale(d['media_count'])).iterations(2))
       .force('x', d3.forceX(d => d['media_count']))
       .force('y', d3.forceY(d => d['media_count']))
-      .nodes(data)
+      .nodes(dataArr)
       .alphaMin(0.25)
       .on('tick', updateCartogram)
       .on('end', resetCartogram)
@@ -64,7 +67,7 @@ var colors = [
         .style("stroke-width", 2)
         .style("stroke-color", 'black')
         .selectAll('circle.node')
-        .data(data)
+        .data(dataArr)
         .enter()
         .append("circle")
         .attr("class", "node")
@@ -83,9 +86,9 @@ var colors = [
     
       function updateCartogram() {
         d3.selectAll('circle.node')
-          .data(data)
-          .attr('cx', d => d.x)
-          .attr('cy', d => d.y)
+          .data(dataArr)
+          .attr('cx', d => d.x/5000)
+          .attr('cy', d => d.y/5000)
       }
     
       function resetCartogram() {
@@ -102,7 +105,7 @@ var colors = [
           colorScale = d3.scaleCluster().domain(values).range(colors)
     
           redrawNodes()
-          force.force('collision', d3.forceCollide(d => scale(d['media_count']).iterations(2)))
+          force.force('collision', d3.forceCollide(d => scale(d['media_count'])))
           .force('x', d3.forceX(d => d['media_count']))
           .force('y', d3.forceY(d => d['media_count']))
           .alpha(1)
@@ -121,12 +124,12 @@ var colors = [
     
       function redrawNodes() {
         d3.selectAll('circle.node')
-          .data(data)
+          .data(dataArr)
           .transition()
           .duration(500)
-          .style('fill', d => colorScale('black'))
-          .style('stroke', d => d3.hsl(colorScale(200)).darker())
-          .attr('r', d => scale(67))
+          .style('fill', d => colorScale(d['media_count']))
+          .style('stroke', d => d3.hsl(colorScale(d['media_count'])).darker())
+          .attr('r', d => scale(d['media_count']))
         }
     }
 
