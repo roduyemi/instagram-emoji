@@ -16,3 +16,15 @@ svg {
   /* align: center; */
   r: 20;
 }
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  color: white;
+  padding: 4px;
+  font: 9px sans-serif white;
+  background: #000000;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}

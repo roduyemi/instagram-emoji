@@ -16,9 +16,6 @@ const dataviz = require('./dataviz');
     .then(response =>  {
       const data = response.data.body;
       // console.log(response.data.body);
-      Object.keys(data).forEach(key => {
-        // console.log('key : ' + key + ', value: ' + JSON.stringify(data[key]));
-      });
       return data;
     })
     .catch(error => {
@@ -36,9 +33,9 @@ const dataviz = require('./dataviz');
     .then(data => {
       dataviz.cartogram(data);
     });
-    
   // });
   }
+  
   module.exports = {
     run,
     getEmojiCount

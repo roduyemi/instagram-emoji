@@ -8,31 +8,20 @@ const index = require('./index.js');
 app.use(express.static(__dirname));
 
 app.get('/', (request, response) => {
-  // index.getEmojiCount()
-  // .then((count) => {
-  //   console.log('count ', count);
-  //   response.send(count);
-    response.send(cartogram);
-    // response.sendFile(path.join(__dirname, './index.html'));
-  // });
+  response.send(cartogram);
 });
-
-// app.get('/', (request, response) => {
-//   response.send(dataviz);
-// });
 
 app.get('/cartogram', (request, response) => {
 
-  console.log('------calling cartogram------');
+  console.log('-----calling emoji count-----');
 
   index.getEmojiCount()
   .then(count => {
     response.send(count);
+  })
+  .catch((err) => {
+    response.status(500).send({ error: err.message });
   });
-  // response.send([breakingStoriesRes, breakingNews])
-  // .catch((err) => {
-  //   response.status(500).send({ error: err.message });
-  // });
 
 });
 
