@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Instagram Emoji Counts</title>
+  </head>
+  <body>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://unpkg.com/d3-scale-cluster@1.1.7/dist/d3-scale-cluster.min.js"></script>
+    <script src="https://d3js.org/d3-selection.v1.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+      // console.log('emojiCount ', emojiCount);
+      // cartogram(count, d3);
+
+      $.ajax({
+        url: '/cartogram',
+        // data: $("#chooseDateFormBreaking").serialize(),
+        method: 'GET',
+        success: function(data) {
+          console.log('hello')
+          console.log(data);
+          // dataviz.cartogram(data, d3);
+          // if(data.length > 0 && data[0].length > 0 && data[1].length > 0) {
+          //     d3version3.select('#svg-breaking').remove();
+          //     breakingStoriesChart(data[0], data[1], d3version3)
+          // } else {
+          //     alert('No Breaking Stories for Selected Date Range')
+          // }
+        }
+      });
+    </script>
+  </body>
+</html>
