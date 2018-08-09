@@ -5,25 +5,46 @@ const cartogram = (data, d3) => {
 
   const keys = Object.keys(data);
   let dataArr = [];
-  keys.forEach(k => {
-    dataArr.push(data[k])
+  keys.forEach(key => {
+    dataArr.push(data[key])
   });
 
-  let thisKeyValues = Object.values(data);
+  let keyValues = Object.values(data);
   let values = []
-  thisKeyValues.forEach(v => {
-    values.push(v['media_count'])
+  keyValues.forEach(value => {
+    values.push(value['media_count'])
   });
 
-  let svg = d3.select('svg')
+  let svg = d3.select('body').append('svg')
+    .attr('width', width)
+    .attr('height', height)
     .append('g')
     .attr('transform', 'translate(0,0)')
 
+  let defs = svg.append('defs')
+    .data(dataArr)
+
+  defs.append('pattern')
+
   let radiusScale = d3.scaleSqrt().domain([100000, 2000000]).range([10, 80])
 
+  defs.selectAll('.emoji-pattern')
+  .data(dataArr)
+  .enter().append('pattern')
+  .attr('id', d => d['name'])
+  .attr('height', '100%')
+  .attr('width', '100%')
+  .attr('patternContentUnits', 'objectBoundingBox')
+  .append('image')
+  .attr('height', 0.85)
+  .attr('width', 0.85)
+  .attr('preserveAspectRatio', 'none')
+  .attr('xmlns:xlink', 'http://www.w3.org/1999/xlink')
+  .attr('xlink:href', d => 'https://s3-eu-west-1.amazonaws.com/newslabs-geofacts/emojis/' + d['type']+ '.png')
+
   let simulation = d3.forceSimulation()
-    .force('x', d3.forceX(width / 2).strength(0.05))
-    .force('y', d3.forceY(height / 2).strength(0.05))
+    .force('x', d3.forceX(width / 2).strength(0.1))
+    .force('y', d3.forceY(height / 2).strength(0.1))
     .force('collide', d3.forceCollide(d => radiusScale(d['media_count'])))
 
   let div = d3.select('body').append('div')	
@@ -34,7 +55,7 @@ const cartogram = (data, d3) => {
     .enter().append('circle')
     .attr('class', 'emoji')
     .attr('r', d => radiusScale(d['media_count']))
-    .attr('fill', 'black')
+    .attr('fill', d => 'url(#' + d['name'] + ')')
     .on('mouseover', d => {
       // d3.select(this).style('fill', d3.rgb(color(d.botName)).darker(2));
       div.transition()		

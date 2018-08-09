@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const app = express();
 const port = 3000;
 const cartogram = require('./dataviz');
@@ -13,7 +12,7 @@ app.get('/', (request, response) => {
 
 app.get('/cartogram', (request, response) => {
 
-  console.log('-----calling emoji count-----');
+  console.log('-----getting emoji count-----');
 
   index.getEmojiCount()
   .then(count => {

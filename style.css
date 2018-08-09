@@ -3,20 +3,6 @@
   margin: 0;
 }
 
-svg {
-  width: 1200px;
-  height: 1000px;
-}
-
-.title {
-  color: black;
-}
-
-.node {
-  /* align: center; */
-  r: 20;
-}
-
 div.tooltip {
   position: absolute;
   text-align: center;
