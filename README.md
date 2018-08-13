@@ -5,7 +5,7 @@ The counts are retrieved via the [emojiCountApi](https://eu-west-1.console.aws.a
 
 # Getting started
 ```
-git clone git@github.com:bbc/geo-facts.git
+git clone git@github.com:bbc/instagram-emoji.git
 cd geo-facts
 npm install
 ```
