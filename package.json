@@ -19,8 +19,8 @@
   "homepage": "https://github.com/roduyemi/instagram-emoji#readme",
   "dependencies": {
     "axios": "^0.18.0",
-    "concurrently": "^4.1.0",
-    "express": "^4.16.3",
-    "node-cron": "^2.0.3"
+    "concurrently": "^6.2.0",
+    "express": "^4.17.1",
+    "node-cron": "^3.0.0"
   }
 }
